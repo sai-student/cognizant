@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.app {
+  padding: 8px;
+}
+
+button {
+  margin-bottom: 3px;
+}
+
+.currency-container {
+  margin-top: 25px;
+}
+
+.currency-container h1 {
+  color: green;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.form-row label {
+  width: 85px;
+}
+
+.form-row input,
+.form-row textarea {
+  width: 135px;
+  box-sizing: border-box;
+}
+
+.form-row textarea {
+  height: 35px;
+  resize: none;
+}
+
+.currency-container form > button {
+  margin-left: 115px;
+}
