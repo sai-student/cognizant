@@ -1,0 +1,80 @@
+====================================================================
+GIT HANDS-ON LAB 4 - SOLUTION
+Resolving merge conflicts (Git-T03-HOL_001)
+====================================================================
+
+1. Verify master is clean:
+   $ git checkout master
+   $ git status
+
+2. Create branch "GitWork" and add "hello.xml":
+   $ git checkout -b GitWork
+   $ notepad++ hello.xml
+   (type e.g. "<message>Hello from GitWork branch</message>", save)
+
+3. Update the content of hello.xml again and observe status:
+   $ notepad++ hello.xml
+   $ git status
+
+4. Commit the changes on the branch:
+   $ git add hello.xml
+   $ git commit -m "Added and updated hello.xml in GitWork"
+
+5. Switch to master:
+   $ git checkout master
+
+6. Add "hello.xml" to master with different content:
+   $ notepad++ hello.xml
+   (type e.g. "<message>Hello from master branch</message>", save)
+
+7. Commit the changes to master:
+   $ git add hello.xml
+   $ git commit -m "Added hello.xml in master with different content"
+
+8. Observe the log of all branches:
+   $ git log --oneline --graph --decorate --all
+
+9. Check differences with Git diff tool:
+   $ git diff master GitWork
+
+10. Use P4Merge for a visual diff between master and branch:
+    $ git difftool -t p4merge master GitWork
+
+11. Merge the branch into master:
+    $ git merge GitWork
+    -> CONFLICT (add/add): Merge conflict in hello.xml
+
+12. Observe the conflict markup Git added inside hello.xml:
+    <<<<<<< HEAD
+    <message>Hello from master branch</message>
+    =======
+    <message>Hello from GitWork branch</message>
+    >>>>>>> GitWork
+
+13. Use the 3-way merge tool to resolve the conflict:
+    $ git mergetool -t p4merge
+    (pick/combine the correct content in P4Merge, then save & close)
+
+14. Commit the resolved changes to master:
+    $ git add hello.xml
+    $ git commit -m "Resolved merge conflict in hello.xml"
+
+15. Check status - the merge tool leaves a backup file
+    (hello.xml.orig); add it to .gitignore:
+    $ git status
+    $ notepad++ .gitignore
+    (add the line: *.orig )
+
+16. Commit the .gitignore update:
+    $ git add .gitignore
+    $ git commit -m "Added backup file (*.orig) to .gitignore"
+
+17. List all available branches:
+    $ git branch -a
+
+18. Delete the branch that was merged into master:
+    $ git branch -d GitWork
+
+19. Observe the final commit log:
+    $ git log --oneline --graph --decorate
+====================================================================

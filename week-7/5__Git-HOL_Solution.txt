@@ -1,0 +1,25 @@
+====================================================================
+GIT HANDS-ON LAB 5 - SOLUTION
+Clean up and push back to remote Git (Git-T03-HOL_002)
+====================================================================
+
+1. Verify master is in a clean state:
+   $ git checkout master
+   $ git status
+   -> "nothing to commit, working tree clean"
+
+2. List all available branches:
+   $ git branch -a
+
+3. Pull the remote repository into master (sync before pushing):
+   $ git pull origin master
+
+4. Push the pending local changes from the previous lab
+   (Git-T03-HOL_002) to the remote repository:
+   $ git push origin master
+
+5. Confirm the changes are reflected in the remote repository by
+   logging into GitLab and checking the "GitDemo" project, or by
+   running:
+   $ git log --oneline --graph --decorate --all
+====================================================================

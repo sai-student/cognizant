@@ -1,0 +1,42 @@
+====================================================================
+GIT HANDS-ON LAB 2 - SOLUTION
+Ignoring unwanted files/folders using .gitignore
+====================================================================
+
+Goal: Create a ".log" file and a "log" folder in the working
+directory, then update .gitignore so that these are ignored when
+committing. Confirm with git status.
+
+1. Confirm you are inside the existing Git working directory
+   (e.g. GitDemo) and it is clean:
+   $ git status
+
+2. Create a log file with a .log extension:
+   $ echo "sample log entry" >> app.log
+
+3. Create a "log" folder with a file inside it:
+   $ mkdir log
+   $ echo "error log entry" >> log/error.log
+
+4. Check status - both the file and folder show as untracked:
+   $ git status
+
+5. Create/open the .gitignore file with the default editor:
+   $ notepad++ .gitignore
+
+   Add the following lines inside .gitignore and save:
+   *.log
+   log/
+
+6. Check status again - the .log file and log/ folder should no
+   longer appear as untracked; only .gitignore shows as new:
+   $ git status
+
+7. Stage and commit the .gitignore file:
+   $ git add .gitignore
+   $ git commit -m "Added .gitignore to ignore .log files and log folder"
+
+8. Verify final status is clean:
+   $ git status
+   -> "nothing to commit, working tree clean"
+====================================================================

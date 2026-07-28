@@ -1,0 +1,94 @@
+====================================================================
+GIT HANDS-ON LAB 1 - SOLUTION
+Setup Git Configuration, Integrate Notepad++, Add file to repository
+====================================================================
+
+STEP 1: Setup your machine with Git Configuration
+--------------------------------------------------
+1. Check Git is installed:
+   $ git --version
+
+2. Set user level configuration (name and email):
+   $ git config --global user.name "username"
+   $ git config --global user.email "username@example.com"
+
+3. Verify the configuration:
+   $ git config --global --list
+
+
+STEP 2: Integrate notepad++.exe to Git and make it the default editor
+-----------------------------------------------------------------------
+1. Check if notepad++ runs from Git Bash:
+   $ notepad++
+   (If you get: "bash: notepad++: command not found", it means
+    notepad++.exe is not added to the environment PATH variable.)
+
+   Fix: Control Panel -> System -> Advanced System Settings ->
+        Advanced tab -> Environment Variables -> edit the "Path"
+        user variable -> add the folder containing notepad++.exe
+        (e.g. C:\Program Files\Notepad++\)
+
+2. Close and reopen Git Bash, then run:
+   $ notepad++
+
+3. Create an alias for notepad++ (opens notepad++ and adds the
+   alias line to your bash profile):
+   $ notepad++.exe bash-profile
+   (add this line inside the profile file that opens in notepad++)
+   alias npp='notepad++.exe -multiInst -nosession'
+
+4. Configure notepad++ as Git's default editor:
+   $ git config --global core.editor "notepad++.exe -multiInst -nosession"
+
+5. Verify notepad++ is the default editor (-e opens the global
+   config file in the configured editor):
+   $ git config --global -e
+
+   The opened file should show:
+   [user]
+       name = username
+       email = username@example.com
+   [core]
+       editor = notepad++.exe -multiInst -nosession
+
+
+STEP 3: Add a file to the source code repository
+--------------------------------------------------
+1. Create a new project/repository "GitDemo":
+   $ git init GitDemo
+
+2. Move into it and verify the hidden .git folder was created:
+   $ cd GitDemo
+   $ ls -al
+
+3. Create "welcome.txt" and add content to it:
+   $ echo "Welcome to the version control" >> welcome.txt
+
+4. Verify the file was created:
+   $ ls -al
+
+5. Verify the content:
+   $ cat welcome.txt
+
+6. Check status (file will show as untracked):
+   $ git status
+
+7. Stage the file so Git starts tracking it:
+   $ git add welcome.txt
+
+8. Commit with a multi-line message using the default editor
+   (notepad++ opens - type the message, save, and close it):
+   $ git commit
+
+9. Check status again (should be clean now):
+   $ git status
+   -> "On branch master, nothing to commit, working tree clean"
+
+10. Sign up on GitLab and create a remote repository "GitDemo".
+
+11. Pull from the remote repository:
+    $ git pull origin master
+
+12. Push the local repository to the remote:
+    $ git push origin master
+====================================================================
